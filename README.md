@@ -1,8 +1,8 @@
 ## 20200609
 - [x] 【原理】Promise原理
 - [x] 【前端热点】微前端
-- [] 【基础系列】[红宝书第三章](https://github.com/kouchao/learn/issues/1)
-- [] 【手写or源码】手写Promise
+- [ ] 【基础系列】[红宝书第三章](https://github.com/kouchao/learn/issues/1)
+- [ ] 【手写or源码】手写Promise
 - [x] 【概念】[CSR、SSR、NSR、ESR傻傻分不清楚，一文帮你理清前端渲染方案！](https://juejin.im/post/5ed5cbaef265da76d109ea3a)
 - [x] 【算法】[两数之和](https://github.com/kouchao/learn/issues/2)
 
