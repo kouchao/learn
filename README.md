@@ -8,12 +8,22 @@
 
 ## 20200610
 > 红宝书第三章部分评估有误，内容过多。手写Promise部分因工作需要没有充足的时间来做。
-- [ ] 【原理】[9k字 | Promise/async/Generator实现原理解析](https://juejin.im/post/5e3b9ae26fb9a07ca714a5cc)
-- [ ] 【前端热点】[一张图概括淘宝直播背后的前端技术 | 赠送多媒体前端手册](https://juejin.im/post/5edf5a3ae51d45786672c31c)
+- [x] 【原理】[9k字 | Promise/async/Generator实现原理解析](https://juejin.im/post/5e3b9ae26fb9a07ca714a5cc)
+- [x] 【前端热点】[一张图概括淘宝直播背后的前端技术 | 赠送多媒体前端手册](https://juejin.im/post/5edf5a3ae51d45786672c31c)
 - [ ] 【基础系列】[红宝书第三章](https://github.com/kouchao/learn/issues/1)
-- [ ] 【手写or源码】手写Promise
-- [ ] 【概念】[面试官：说说你对 options 请求的理解](https://juejin.im/post/5edef7b2e51d45784213ca24)
-- [ ] 【算法】[2.两数相加](https://leetcode-cn.com/problems/add-two-numbers/)
+- [x] 【手写or源码】手写Promise
+- [x] 【概念】[面试官：说说你对 options 请求的理解](https://juejin.im/post/5edef7b2e51d45784213ca24)
+- [x] 【算法】[2.两数相加](https://github.com/kouchao/learn/issues/3)
+
+
+## 20200611
+> 红宝书第三章继续。Promise实现A+规范
+- [ ] 【原理】[浅谈前端中的圈复杂度](https://juejin.im/post/5ec207fd6fb9a0433567b650)
+- [ ] 【前端热点】[你学BFF和Serverless了吗](https://juejin.im/post/5ee0635de51d4578740f76ae)
+- [ ] 【基础系列】[红宝书第三章](https://github.com/kouchao/learn/issues/1)
+- [ ] 【手写or源码】Promise A+ 源码 + 手写Promise A+
+- [ ] 【概念】[HTTP/3 原理与实践](https://mp.weixin.qq.com/s/wrOXO5MH4wtbuvrCPCQNQA)
+- [ ] 【算法】[3. 无重复字符的最长子串](https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/)
 
 ----
 ## 一名【合格】前端工程师的自检之路
