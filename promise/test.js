@@ -1,4 +1,4 @@
-// const Promise = require('./promise')
+const Promise = require('./index')
 
 const p = new Promise((resolve, reject) => {
   setTimeout(() => {
@@ -7,10 +7,11 @@ const p = new Promise((resolve, reject) => {
 })
 p.then(value => {
   console.log(value)
-})
-p.then(value => {
-  console.log(value)
-})
-p.then(value => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(2)
+    }, 1000)
+  })
+}).then(value => {
   console.log(value)
 })
