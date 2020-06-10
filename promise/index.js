@@ -1,14 +1,13 @@
 class Promise {
   status = Promise.PENDING
   value = null
-  fulfilledCallbacks = []
-  rejectedCallbacks = []
+  callbacks = []
   constructor(fn) {
     fn(this._resolve.bind(this), this._reject.bind(this))
   }
 
   then(onFulfilled, onRejected) {
-    return new Promise((resolve, reject) => {
+   return new Promise((resolve, reject) => {
       this._handle({
         onFulfilled,
         resolve,
@@ -19,19 +18,17 @@ class Promise {
   }
 
   _handle(callback) {
-    if (this.status === Promise.PENDING) {
-      this.callbacks.push(callback)
-      return
-    }
     try {
       if (this.status === Promise.FULFILLED) {
-        const ret = callback.onFulfilled(this.value)
+        const ret = callback.onFulfilled
+          ? callback.onFulfilled(this.value)
+          : null
         callback.resolve(ret)
-        return 
+        return
       }
-  
+
       if (this.status === Promise.REJECTED) {
-        const ret = callback.onRejected(this.value)
+        const ret = callback.onRejected ? callback.onRejected(this.value) : null
         callback.reject(ret)
       }
     } catch (error) {
@@ -50,7 +47,7 @@ class Promise {
 
     this.status = Promise.FULFILLED
     this.value = value
-    this.fulfilledCallbacks.forEach((callback) => this._handle(callback))
+    this.callbacks.forEach((callback) => this._handle(callback))
   }
 
   _reject(value) {
@@ -64,12 +61,21 @@ class Promise {
 
     this.status = Promise.REJECTED
     this.value = value
-    this.rejectedCallbacks.forEach((callback) => this._handle(callback))
+    this.callbacks.forEach((callback) => this._handle(callback))
   }
 }
 
 Promise.PENDING = 'pending'
 Promise.FULFILLED = 'fulfilled'
 Promise.REJECTED = 'rejected'
+
+Promise.deferred = function () {
+  const defer = {}
+  defer.promise = new Promise((resolve, reject) => {
+    defer.resolve = resolve
+    defer.reject = reject
+  })
+  return defer
+}
 
 module.exports = Promise

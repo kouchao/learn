@@ -4,7 +4,7 @@
   "description": "- [x] 【原理】Promise原理 - [x] 【前端热点】微前端 - [ ] 【基础系列】[红宝书第三章](https://github.com/kouchao/learn/issues/1) - [ ] 【手写or源码】手写Promise - [x] 【概念】[CSR、SSR、NSR、ESR傻傻分不清楚，一文帮你理清前端渲染方案！](https://juejin.im/post/5ed5cbaef265da76d109ea3a) - [x] 【算法】[1.两数之和](https://github.com/kouchao/learn/issues/2)",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "promises-aplus-tests ./promise/index.js"
   },
   "repository": {
     "type": "git",
@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/kouchao/learn/issues"
   },
-  "homepage": "https://github.com/kouchao/learn#readme"
+  "homepage": "https://github.com/kouchao/learn#readme",
+  "devDependencies": {
+    "promises-aplus-tests": "^2.1.2"
+  }
 }
