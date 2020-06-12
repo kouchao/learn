@@ -1,73 +1,64 @@
-class Promise {
-  status = Promise.PENDING
-  value = null
-  callbacks = []
-  constructor(fn) {
-    fn(this._resolve.bind(this), this._reject.bind(this))
-  }
+const noop = () => {}
 
-  then(onFulfilled, onRejected) {
-   return new Promise((resolve, reject) => {
-      this._handle({
-        onFulfilled,
-        resolve,
-        onRejected,
-        reject,
-      })
+class Promise {
+  status = 0
+  callbacks = []
+  value = false
+  constructor(fn) {
+    if (fn === noop) {
+      return
+    }
+    fn((value) => {
+      this._resolve(value)
     })
   }
 
-  _handle(callback) {
-    try {
-      if (this.status === Promise.FULFILLED) {
-        const ret = callback.onFulfilled
-          ? callback.onFulfilled(this.value)
-          : null
-        callback.resolve(ret)
-        return
-      }
-
-      if (this.status === Promise.REJECTED) {
-        const ret = callback.onRejected ? callback.onRejected(this.value) : null
-        callback.reject(ret)
-      }
-    } catch (error) {
-      callback.reject(error)
-    }
-  }
-
   _resolve(value) {
-    if ((value && typeof value === 'function') || typeof value === 'object') {
-      const then = value.then
-      if (typeof then === 'function') {
-        then.call(value, this._resolve.bind(this))
-      }
-      return
-    }
-
-    this.status = Promise.FULFILLED
+    console.log('_resolve')
+    this.status = 1
     this.value = value
-    this.callbacks.forEach((callback) => this._handle(callback))
   }
 
-  _reject(value) {
-    if ((value && typeof value === 'function') || typeof value === 'object') {
-      const then = value.then
-      if (typeof then === 'function') {
-        then.call(value, this._resolve.bind(this), this._reject.bind(this))
-      }
-      return
+  then(onFulfilled) {
+    console.log('then')
+
+    const promise = new Promise(noop)
+
+    this.handle({
+      onFulfilled,
+      promise,
+    })
+
+    return promise
+  }
+
+  handle(callback) {
+    if (this.status === 0) {
+      this.callbacks.push(callback)
+    } else {
+      setTimeout(() => {
+        const value = callback.onFulfilled(this.value)
+
+        if (value && value.then) {
+          value.then((val) => {
+            callback.promise._resolve(val)
+          })
+        } else {
+          callback.promise._resolve(value)
+        }
+      })
     }
 
-    this.status = Promise.REJECTED
-    this.value = value
-    this.callbacks.forEach((callback) => this._handle(callback))
+    setTimeout(() => {
+      if (this.status === 1) {
+        this.callbacks.forEach((callback) => {
+          const value = callback.onFulfilled(this.value)
+          callback.promise._resolve(value)
+        })
+      }
+    })
   }
 }
-
-Promise.PENDING = 'pending'
-Promise.FULFILLED = 'fulfilled'
-Promise.REJECTED = 'rejected'
 
 Promise.deferred = function () {
   const defer = {}
@@ -78,4 +69,16 @@ Promise.deferred = function () {
   return defer
 }
 
-module.exports = Promise
+// module.exports = Promise
+new Promise((resolve) => {
+  resolve('111')
+})
+  .then((res) => {
+    console.log('res', res)
+    return new Promise((resolve) => {
+      resolve('222')
+    })
+  })
+  .then((res) => {
+    console.log('res2', res)
+  })

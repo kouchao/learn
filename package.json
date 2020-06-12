@@ -19,5 +19,8 @@
   "homepage": "https://github.com/kouchao/learn#readme",
   "devDependencies": {
     "promises-aplus-tests": "^2.1.2"
+  },
+  "dependencies": {
+    "asap": "^2.0.6"
   }
 }
